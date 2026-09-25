@@ -11,7 +11,6 @@ import java.util.Objects;
 @Table(name = "currency_rates")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 public class CurrencyRate {
 
     @Id
@@ -29,6 +28,21 @@ public class CurrencyRate {
     private BigDecimal spread;
     @Column(name = "fetched_at", nullable = false, updatable = false)
     private Instant fetchedAt;
+
+    @Builder
+    public CurrencyRate(String sourceCurrency,
+                        String targetCurrency,
+                        BigDecimal bidPrice,
+                        BigDecimal askPrice,
+                        BigDecimal spread,
+                        Instant fetchedAt) {
+        this.sourceCurrency = sourceCurrency;
+        this.targetCurrency = targetCurrency;
+        this.bidPrice = bidPrice;
+        this.askPrice = askPrice;
+        this.spread = spread;
+        this.fetchedAt = fetchedAt;
+    }
 
     @Override
     public boolean equals(Object o) {

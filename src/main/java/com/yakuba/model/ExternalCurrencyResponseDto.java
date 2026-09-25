@@ -16,7 +16,7 @@ public record ExternalCurrencyResponseDto(
         @NotNull Instant timestamp
 ) {
     @AssertTrue(message = "Ask price must be greater than or equal to Bid price")
-    public boolean isAskGetBid() {
+    public boolean isAskGteBid() {
         if (bid == null || ask == null) {
             return true;
         }
